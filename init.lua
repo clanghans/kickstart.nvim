@@ -5,10 +5,10 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- [[ Setting options ]]
-require('options')
+require 'options'
 -- [[ Basic Keymaps ]]
-require('keymaps')
+require 'keymaps'
 -- [[ Basic Autocommands ]]
-require('autocmds')
+require 'autocmds'
 
-require('lazy-plugins')
+require 'lazy-plugins'

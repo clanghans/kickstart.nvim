@@ -6,10 +6,8 @@ vim.g.maplocalleader = ' '
 
 -- [[ Setting options ]]
 require('options')
-
 -- [[ Basic Keymaps ]]
 require('keymaps')
-
 -- [[ Basic Autocommands ]]
 require('autocmds')
 

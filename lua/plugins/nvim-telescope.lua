@@ -51,11 +51,22 @@ return {
         -- You can put your default mappings / updates / etc. in here
         --  All the info you're looking for is in `:help telescope.setup()`
         --
-        -- defaults = {
-        --   mappings = {
-        --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-        --   },
-        -- },
+        defaults = {
+          -- ivy mode
+          layout_strategy = 'bottom_pane',
+          sorting_strategy = 'ascending',
+
+          layout_config = {
+            height = 0.6,
+          },
+
+          border = true,
+          borderchars = {
+            prompt = { '─', ' ', ' ', ' ', '─', '─', ' ', ' ' },
+            results = { ' ' },
+            preview = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
+          },
+        },
         -- pickers = {}
         extensions = {
           ['ui-select'] = {
@@ -73,9 +84,13 @@ return {
       local set = vim.keymap.set
 
       -- Files
-      set('n', '<leader>ff', builtin.git_files, { desc = '[F]iles git find' })
-      set('n', '<leader>fF', builtin.find_files, { desc = '[F]iles find cwd' })
+      set('n', '<leader>fg', builtin.git_files, { desc = '[F]iles git find' })
+      set('n', '<leader>ff', builtin.find_files, { desc = '[F]iles find' })
       set('n', '<leader>fr', builtin.oldfiles, { desc = '[F]iles Recent Files' })
+
+      set('n', '<leader>fF', function()
+        builtin.find_files { hidden = false, no_ignore = true }
+      end, { desc = '[F]iles find no-ignore' })
 
       set('n', '<leader>fp', function()
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
@@ -94,22 +109,22 @@ return {
       -- set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
 
       -- Slightly advanced example of overriding default behavior and theme
-    --   set('n', '<leader>/', function()
-    --     -- You can pass additional configuration to telescope to change theme, layout, etc.
-    --     builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-    --       winblend = 10,
-    --       previewer = false,
-    --     })
-    --   end, { desc = '[/] Fuzzily search in current buffer' })
-    --
-    --   -- Also possible to pass additional configuration options.
-    --   --  See `:help telescope.builtin.live_grep()` for information about particular keys
-    --   set('n', '<leader>s/', function()
-    --     builtin.live_grep {
-    --       grep_open_files = true,
-    --       prompt_title = 'Live Grep in Open Files',
-    --     }
-    --   end, { desc = '[S]earch [/] in Open Files' })
+      --   set('n', '<leader>/', function()
+      --     -- You can pass additional configuration to telescope to change theme, layout, etc.
+      --     builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+      --       winblend = 10,
+      --       previewer = false,
+      --     })
+      --   end, { desc = '[/] Fuzzily search in current buffer' })
+      --
+      --   -- Also possible to pass additional configuration options.
+      --   --  See `:help telescope.builtin.live_grep()` for information about particular keys
+      --   set('n', '<leader>s/', function()
+      --     builtin.live_grep {
+      --       grep_open_files = true,
+      --       prompt_title = 'Live Grep in Open Files',
+      --     }
+      --   end, { desc = '[S]earch [/] in Open Files' })
     end,
   },
 }

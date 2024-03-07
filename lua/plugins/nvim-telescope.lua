@@ -96,6 +96,10 @@ return {
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
       end, { desc = '[F]ind files in config project' })
 
+      set('n', '<leader>/', function()
+        builtin.grep_string { shorten_path = true, word_match = '-w', only_sort_text = true, search = '' }
+      end, { desc = 'Search in files' })
+
       -- Help
       set('n', '<leader>hh', builtin.help_tags, { desc = '[H]elp [H]elp' })
       set('n', '<leader>hk', builtin.keymaps, { desc = '[H]elp [K]eymaps' })

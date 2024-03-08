@@ -96,21 +96,26 @@ return {
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
       end, { desc = '[F]ind files in config project' })
 
+      -- Search
       set('n', '<leader>/', function()
         builtin.grep_string { shorten_path = true, word_match = '-w', only_sort_text = true, search = '' }
       end, { desc = 'Search in files' })
+      set('n', "<leader>'", builtin.resume, { desc = 'resume last search' })
+
+      set('n', '<leader>ss', builtin.current_buffer_fuzzy_find, { desc = '[S]earch [S]elect' })
 
       -- Help
       set('n', '<leader>hh', builtin.help_tags, { desc = '[H]elp [H]elp' })
       set('n', '<leader>hk', builtin.keymaps, { desc = '[H]elp [K]eymaps' })
 
-      -- set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
+      -- Buffers
+      set('n', '<leader>bb', builtin.buffers, { desc = 'Find existing buffers' })
+
+      -- set('n', '<leader>ss', builtin.builtin, { desc =s'[S]earch [S]elect Telescope' })
       -- set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
       -- set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
       -- set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
-      -- set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       -- set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-      -- set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
 
       -- Slightly advanced example of overriding default behavior and theme
       --   set('n', '<leader>/', function()

@@ -19,7 +19,7 @@ vim.opt.rtp:prepend(lazypath)
 --
 require('lazy').setup {
   -- Detect tabstop and shiftwidth automatically
-  { 'tpope/vim-sleuth', opt = {} },
+  { 'tpope/vim-sleuth' },
 
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },

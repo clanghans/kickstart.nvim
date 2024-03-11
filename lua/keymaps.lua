@@ -50,8 +50,5 @@ vim.keymap.set('n', '<leader>ud', function()
   toggle.diagnostics()
 end, { desc = 'Toggle Diagnostics' })
 
-local permalink = require 'permalink'
-vim.api.nvim_create_user_command('RemotePermalink', permalink.remotePermalink, {})
-
 -- vim.keymap.set("n", "<leader>xl", "<cmd>lopen<cr>", { desc = "Location List" })
 -- vim.keymap.set("n", "<leader>xq", "<cmd>copen<cr>", { desc = "Quickfix List" })

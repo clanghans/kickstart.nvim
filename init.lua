@@ -10,5 +10,7 @@ require 'options'
 require 'keymaps'
 -- [[ Basic Autocommands ]]
 require 'autocmds'
+-- [[ User commands ]]
+require 'commands'
 
 require 'lazy-plugins'

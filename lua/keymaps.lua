@@ -45,8 +45,13 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
-local toggle = require('utils.toggle')
-vim.keymap.set("n", "<leader>ud", function() toggle.diagnostics() end, { desc = "Toggle Diagnostics" })
+local toggle = require 'utils.toggle'
+vim.keymap.set('n', '<leader>ud', function()
+  toggle.diagnostics()
+end, { desc = 'Toggle Diagnostics' })
+
+local permalink = require 'permalink'
+vim.api.nvim_create_user_command('RemotePermalink', permalink.remotePermalink, {})
 
 -- vim.keymap.set("n", "<leader>xl", "<cmd>lopen<cr>", { desc = "Location List" })
 -- vim.keymap.set("n", "<leader>xq", "<cmd>copen<cr>", { desc = "Quickfix List" })

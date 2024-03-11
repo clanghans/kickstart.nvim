@@ -110,7 +110,7 @@ return {
         cssls = {},
         cssmodules_ls = {},
         dockerls = {},
-        gopls = {},
+        -- gopls = {},
         html = {},
         jsonls = {},
         marksman = {},
@@ -168,6 +168,12 @@ return {
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format lua code
+        'ansible-lint',
+        'cmakelang',
+        'gitlint',
+        'shellcheck',
+        'markdownlint',
+        'yamllint',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 

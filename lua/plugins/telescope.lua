@@ -1,14 +1,69 @@
 return {
   { -- Fuzzy Finder (files, lsp, etc)
     "nvim-telescope/telescope.nvim",
-    keys = {},
+    dependencies = {
+      "nvim-telescope/telescope-fzf-native.nvim",
+      build = "make",
+      config = function()
+        require("telescope").load_extension("fzf")
+      end,
+    },
     opts = {
       defaults = {
         layout_strategy = "bottom_pane",
         layout_config = {
-          prompt_position = "top",
           height = 0.6,
+          prompt_position = "top",
         },
+      },
+    },
+
+    keys = {
+
+      -- Files
+      { "<leader>fc", false },
+      {
+        "<leader>fp",
+        function()
+          require("telescope.builtin").find_files({ cwd = require("lazy.core.config").options.root })
+        end,
+        desc = "Find Plugin File",
+      },
+      -- Search
+      {
+        "<leader>/",
+        function()
+          require("telescope.builtin").grep_string({
+            shorten_path = true,
+            word_match = "-w",
+            only_sort_text = true,
+            search = "",
+          })
+        end,
+        desc = "Search in files",
+      },
+      {
+        "<leader>'",
+        function()
+          require("telescope.builtin").resume()
+        end,
+        desc = "Resume last search",
+      },
+
+      -- Help
+      {
+        "<leader>hh",
+        function()
+          require("telescope.builtin").help_tags()
+        end,
+        desc = "Help pages",
+      },
+      {
+        "<leader>hk",
+        function()
+          require("telescope.builtin").keymaps()
+        end,
+        desc = "Keymaps",
       },
     },
     --
@@ -40,10 +95,6 @@ return {
     -- set("n", "<leader>'", builtin.resume, { desc = "resume last search" })
     --
     -- set("n", "<leader>ss", builtin.current_buffer_fuzzy_find, { desc = "[S]earch [S]elect" })
-    --
-    -- -- Help
-    -- set("n", "<leader>hh", builtin.help_tags, { desc = "[H]elp [H]elp" })
-    -- set("n", "<leader>hk", builtin.keymaps, { desc = "[H]elp [K]eymaps" })
     --
     -- -- Buffers
     -- set("n", "<leader>bb", builtin.buffers, { desc = "Find existing buffers" })

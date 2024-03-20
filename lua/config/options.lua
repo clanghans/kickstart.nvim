@@ -7,6 +7,8 @@ vim.g.autoformat = false
 
 vim.opt.spelllang = { "en", "de" }
 
+vim.opt.clipboard = "unnamedplus"
+
 -- persistent undo
 vim.opt.undofile = true
 vim.opt.undolevels = 10000
